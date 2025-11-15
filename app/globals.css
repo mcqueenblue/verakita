@@ -74,6 +74,11 @@
     overflow-x: hidden;
   }
 
+  /* Custom cursor styles */
+  .cursor-none * {
+    cursor: none !important;
+  }
+
   /* Smooth scrolling will be handled by Lenis on landing pages */
   html.lenis {
     height: auto;
@@ -98,9 +103,17 @@
 
 /* Custom utility classes */
 @layer utilities {
-  /* Text gradient utility */
+  /* Text gradient utility - using single color to avoid complementary color clash */
   .text-gradient {
-    background: linear-gradient(to right, var(--brandBlue), var(--brandOrange));
+    background: linear-gradient(135deg, var(--brandBlue), #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Orange variant for accent elements */
+  .text-gradient-orange {
+    background: linear-gradient(135deg, var(--brandOrange), #ea580c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -72,7 +72,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -103,10 +103,10 @@ export default function Hero() {
         <div ref={buttonRef} className="flex gap-4 justify-center items-center">
           <Link
             href="/dashboard"
-            className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-brandBlue hover:bg-brandBlue-dark rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+            className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-brandBlue hover:bg-brandBlue-dark rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
           >
             {/* Button shine effect */}
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+            <span className="absolute inset-0 w-full h-full via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
 
             <span className="relative flex items-center gap-2">
               Launch App
@@ -128,9 +128,9 @@ export default function Hero() {
 
           <Link
             href="#learn-more"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-brandBlue border-2 border-brandBlue hover:bg-brandBlue hover:text-white rounded-lg transition-all duration-300"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-brandBlue border-2 border-brandBlue hover:bg-brandBlue rounded-lg transition-all duration-300"
           >
-            Learn More
+            Read Docs
           </Link>
         </div>
 

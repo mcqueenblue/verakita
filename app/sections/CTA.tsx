@@ -207,13 +207,6 @@ export default function CTA() {
             </div>
           ))}
         </div>
-
-        {/* Bottom Note */}
-        <div className="text-center mt-12">
-          <p className="text-white/70 text-sm">
-            Trusted by 10,000+ businesses worldwide 🌍
-          </p>
-        </div>
       </div>
     </section>
   );

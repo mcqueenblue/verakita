@@ -34,7 +34,7 @@ export default function DashboardPage() {
               key={i}
               className="flex items-start gap-4 pb-4 border-b border-zinc-100 last:border-0 last:pb-0"
             >
-              <div className="w-10 h-10 bg-[#f97316]/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 bg-[#f97316]/10 rounded-full flex items-center justify-center shrink-0">
                 <span className="text-[#f97316] font-semibold">U{i}</span>
               </div>
               <div className="flex-1 min-w-0">

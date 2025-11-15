@@ -35,7 +35,7 @@ export default function DashboardLayout({
               }}
               className="flex items-center gap-2 transition-opacity"
             >
-              <div className="w-8 h-8 bg-gradient-to-br from-[#2563eb] to-[#f97316] rounded-lg flex items-center justify-center text-white font-bold">
+              <div className="w-8 h-8 from-[#2563eb] to-[#f97316] rounded-lg flex items-center justify-center text-white font-bold">
                 V
               </div>
               {sidebarOpen && (
@@ -183,7 +183,7 @@ function NavItem({
           : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-800"
       )}
     >
-      <span className="w-5 h-5 flex-shrink-0">{icon}</span>
+      <span className="w-5 h-5 shrink-0">{icon}</span>
       {!collapsed && <span className="text-sm font-medium">{label}</span>}
     </Link>
   );

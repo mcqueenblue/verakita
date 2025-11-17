@@ -1,199 +1,91 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import { Pen, Lock, Link2, CheckCircle } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
-
-/**
- * How It Works Section
- * Step-by-step guide with timeline animation
- */
 export default function HowItWorks() {
   const sectionRef = useRef<HTMLElement>(null);
-  const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const lineRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const steps = stepsRef.current.filter(Boolean);
-    if (!steps.length || !lineRef.current) return;
-
-    // Animate connecting line
-    gsap.fromTo(
-      lineRef.current,
-      {
-        scaleY: 0,
-      },
-      {
-        scaleY: 1,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 60%",
-          end: "bottom 80%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    // Animate each step
-    steps.forEach((step, index) => {
-      const isEven = index % 2 === 0;
-
-      gsap.fromTo(
-        step,
-        {
-          opacity: 0,
-          x: isEven ? -100 : 100,
-        },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: step,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-          delay: index * 0.2,
-        }
-      );
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
 
   const steps = [
     {
       number: "01",
-      title: "Sign Up & Integrate",
-      description:
-        "Create your account and integrate Verakita with your platform in minutes using our simple setup wizard.",
-      icon: "🚀",
+      title: "WRITE",
+      description: "User submits an authentic review for a product or service",
+      icon: Pen,
+      color: "bg-neon-blue",
     },
     {
       number: "02",
-      title: "Collect Reviews",
-      description:
-        "Automatically request reviews from customers after purchase. Our smart timing ensures maximum response rates.",
-      icon: "⭐",
+      title: "HASH",
+      description: "System generates SHA-256 cryptographic hash of the review",
+      icon: Lock,
+      color: "bg-punchy-orange",
     },
     {
       number: "03",
-      title: "Verify on Blockchain",
-      description:
-        "Every review is cryptographically verified and stored on the blockchain, ensuring authenticity and transparency.",
-      icon: "🔐",
+      title: "MINT",
+      description: "Proof of review is permanently stored on the blockchain",
+      icon: Link2,
+      color: "bg-lime-green",
     },
     {
       number: "04",
-      title: "Display & Grow",
-      description:
-        "Showcase verified reviews on your website with beautiful widgets. Build trust and boost conversions.",
-      icon: "📈",
+      title: "VERIFY",
+      description: "Anyone can publicly verify the review authenticity",
+      icon: CheckCircle,
+      color: "bg-neon-blue",
     },
   ];
 
   return (
     <section
       ref={sectionRef}
-      className="py-24 bg-white relative overflow-hidden"
+      id="how-it-works"
+      className="relative min-h-screen bg-deep-black py-32 overflow-hidden"
     >
-      {/* Background Decoration */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#2563eb] rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#f97316] rounded-full blur-3xl" />
-      </div>
-
-      <div className="container-custom relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-zinc-800 mb-4">
-            How <span className="text-gradient">Verakita</span> Works
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20">
+        <div className="bg-cream rounded-t-[3rem] md:rounded-t-[4rem] lg:rounded-t-[5rem] border-8 border-white p-12 md:p-16 lg:p-24">
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tight text-deep-black mb-20 text-center">
+            HOW IT
+            <br />
+            WORKS
           </h2>
-          <p className="text-xl text-zinc-600 max-w-2xl mx-auto">
-            Get started in 4 simple steps and start building customer trust
-            today.
-          </p>
-        </div>
-
-        {/* Timeline */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Connecting Line */}
-          <div
-            ref={lineRef}
-            className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#2563eb] to-[#f97316] transform -translate-x-1/2 origin-top hidden md:block"
-          />
-
-          {/* Steps */}
-          <div className="space-y-24">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             {steps.map((step, index) => {
-              const isEven = index % 2 === 0;
-
+              const Icon = step.icon;
               return (
                 <div
                   key={index}
-                  ref={(el) => {
-                    stepsRef.current[index] = el;
-                  }}
-                  className={`flex flex-col md:flex-row items-center gap-8 ${
-                    isEven ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
+                  className="group relative bg-white rounded-[2rem] border-6 border-deep-black p-8 lg:p-10 hover:scale-105 transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] hover:shadow-[12px_12px_0px_0px_rgba(17,17,17,1)]"
                 >
-                  {/* Content */}
+                  <div className="absolute -top-6 -left-6 w-16 h-16 bg-deep-black text-cream rounded-2xl border-6 border-deep-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(17,17,17,1)]">
+                    <span className="text-2xl font-black">{step.number}</span>
+                  </div>
                   <div
-                    className={`flex-1 ${
-                      isEven ? "md:text-right" : "md:text-left"
-                    }`}
+                    className={`w-20 h-20 ${step.color} rounded-2xl border-6 border-deep-black flex items-center justify-center mb-6`}
                   >
-                    <div className="bg-white rounded-2xl p-8 border-2 border-zinc-200 hover:border-[#2563eb] transition-all duration-300 hover:shadow-xl">
-                      <div className="text-5xl mb-4">{step.icon}</div>
-                      <div className="text-sm font-bold text-[#f97316] mb-2">
-                        STEP {step.number}
-                      </div>
-                      <h3 className="text-2xl font-bold text-zinc-800 mb-3">
-                        {step.title}
-                      </h3>
-                      <p className="text-zinc-600 leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
+                    <Icon
+                      className="w-10 h-10 text-deep-black"
+                      strokeWidth={3}
+                    />
                   </div>
-
-                  {/* Number Badge */}
-                  <div className="relative flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#2563eb] to-[#1d4ed8] flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                      {index + 1}
-                    </div>
-                    {/* Pulse Effect */}
-                    <div className="absolute inset-0 rounded-full bg-[#2563eb] opacity-20 animate-ping" />
-                  </div>
-
-                  {/* Spacer for alignment */}
-                  <div className="flex-1 hidden md:block" />
+                  <h3 className="text-4xl font-black text-deep-black mb-4">
+                    {step.title}
+                  </h3>
+                  <p className="text-xl font-bold text-deep-black/70 leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
               );
             })}
           </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-20">
-          <p className="text-zinc-600 mb-6 text-lg">
-            Ready to transform your customer reviews?
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-[#2563eb] text-white font-semibold rounded-xl hover:bg-[#1d4ed8] transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              Get Started Free
-            </button>
-            <button className="px-8 py-4 bg-white border-2 border-zinc-200 text-zinc-800 font-semibold rounded-xl hover:border-[#2563eb] hover:text-[#2563eb] transition-all duration-300">
-              Watch Demo
-            </button>
+          <div className="mt-16 text-center">
+            <div className="inline-flex flex-wrap items-center justify-center gap-4 px-8 py-4 bg-deep-black text-cream rounded-2xl border-6 border-deep-black">
+              <span className="text-2xl font-black"></span>
+              <span className="text-xl md:text-2xl font-black">
+                Immutable Transparent Trustworthy
+              </span>
+            </div>
           </div>
         </div>
       </div>

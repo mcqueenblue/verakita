@@ -1,180 +1,152 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
+import { Shield, Search } from "lucide-react";
 
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
-
-/**
- * Hero Section Component
- * Features GSAP ScrollTrigger animations and brand colors
- * Animates on mount with fade-up effect
- */
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const visualRef = useRef<HTMLDivElement>(null);
 
-  // GSAP animation on component mount
   useGSAP(() => {
-    // Create animation timeline
     const tl = gsap.timeline({
-      defaults: {
-        ease: "power3.out",
-      },
+      defaults: { ease: "power3.out" },
     });
 
-    // Animate elements in sequence
     tl.from(titleRef.current, {
       y: 60,
       opacity: 0,
       duration: 0.8,
     })
+      .from(subtitleRef.current, { y: 40, opacity: 0, duration: 0.8 }, "-=0.4")
       .from(
-        subtitleRef.current,
-        {
-          y: 40,
-          opacity: 0,
-          duration: 0.8,
-        },
-        "-=0.4" // Start 0.4s before previous animation ends
-      )
-      .from(
-        buttonRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-        },
-        "-=0.4"
+        visualRef.current,
+        { scale: 0.8, opacity: 0, duration: 1 },
+        "-=0.6"
       );
-
-    // Parallax effect on scroll
-    gsap.to(containerRef.current, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-      y: 150,
-      opacity: 0.5,
-    });
   }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen bg-cream overflow-hidden"
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-brandBlue/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brandOrange/10 rounded-full blur-3xl" />
-      </div>
+      <nav className="relative z-20 px-6 md:px-12 lg:px-20 py-8">
+        <div className="max-w-[1600px] mx-auto flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-3xl md:text-4xl font-black tracking-tight"
+          >
+            verakita<span className="text-neon-blue">.</span>
+          </Link>
 
-      {/* Content */}
-      <div className="container-custom relative z-10 text-center">
-        {/* Main heading with gradient text */}
-        <h1
-          ref={titleRef}
-          className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
-        >
-          Trust Through <span className="text-gradient">Transparency</span>
-        </h1>
+          <div className="hidden lg:flex items-center gap-12">
+            <a
+              href="#how-it-works"
+              className="text-lg font-bold text-deep-black hover:text-neon-blue transition-colors"
+            >
+              How it works
+            </a>
+            <a
+              href="#features"
+              className="text-lg font-bold text-deep-black hover:text-neon-blue transition-colors"
+            >
+              Features
+            </a>
+            <a
+              href="#verify"
+              className="text-lg font-bold text-deep-black hover:text-neon-blue transition-colors"
+            >
+              Verify
+            </a>
+          </div>
 
-        {/* Subtitle */}
-        <p
-          ref={subtitleRef}
-          className="text-xl md:text-2xl text-zinc-600 max-w-3xl mx-auto mb-12"
-        >
-          Verakita brings authenticity to online reviews. Verified ratings you
-          can trust, powered by blockchain technology.
-        </p>
-
-        {/* Call to action button */}
-        <div ref={buttonRef} className="flex gap-4 justify-center items-center">
           <Link
             href="/dashboard"
-            className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-brandBlue hover:bg-brandBlue-dark rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+            className="px-8 py-4 bg-deep-black text-cream font-black text-lg rounded-2xl border-4 border-deep-black hover:bg-neon-blue hover:border-neon-blue transition-all shadow-[8px_8px_0px_0px_rgba(59,130,246,1)]"
           >
-            {/* Button shine effect */}
-            <span className="absolute inset-0 w-full h-full via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+            Launch App
+          </Link>
+        </div>
+      </nav>
 
-            <span className="relative flex items-center gap-2">
-              Launch App
-              <svg
-                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 pt-20 pb-32">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <h1
+              ref={titleRef}
+              className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9] tracking-tight"
+            >
+              STOP <span className="text-punchy-orange">FAKE</span>
+              <br />
+              REVIEWS.
+            </h1>
+            <p
+              ref={subtitleRef}
+              className="text-2xl md:text-3xl font-bold text-deep-black/80 max-w-xl"
+            >
+              Web3-Powered Review Transparency.
+            </p>
+            <div className="flex flex-wrap gap-6 pt-4">
+              <Link
+                href="/dashboard"
+                className="group px-10 py-6 bg-punchy-orange text-white font-black text-xl rounded-2xl border-4 border-deep-black hover:bg-deep-black transition-all shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(17,17,17,1)]"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
-            </span>
-          </Link>
-
-          <Link
-            href="#learn-more"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-brandBlue border-2 border-brandBlue hover:bg-brandBlue rounded-lg transition-all duration-300"
-          >
-            Read Docs
-          </Link>
-        </div>
-
-        {/* Trust indicators */}
-        <div className="mt-16 flex flex-wrap justify-center gap-8 text-sm text-zinc-500">
-          <div className="flex items-center gap-2">
-            <svg
-              className="w-5 h-5 text-brandOrange"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            <span>Verified Reviews</span>
+                Get Started
+              </Link>
+              <a
+                href="#how-it-works"
+                className="px-10 py-6 bg-cream text-deep-black font-black text-xl rounded-2xl border-4 border-deep-black hover:bg-lime-green transition-all shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(17,17,17,1)]"
+              >
+                Learn More
+              </a>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <svg
-              className="w-5 h-5 text-brandBlue"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span>Blockchain Secured</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg
-              className="w-5 h-5 text-brandOrange"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span>100% Transparent</span>
+
+          <div ref={visualRef} className="relative">
+            <div className="relative w-full aspect-square max-w-[600px] mx-auto">
+              <div className="absolute inset-0 bg-neon-blue rounded-[3rem] border-8 border-deep-black shadow-[16px_16px_0px_0px_rgba(17,17,17,1)] flex items-center justify-center rotate-3 hover:rotate-0 transition-transform duration-500">
+                <div className="relative">
+                  <Shield
+                    className="w-48 h-48 md:w-64 md:h-64 text-cream"
+                    strokeWidth={3}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 md:w-28 md:h-28 bg-lime-green rounded-full border-6 border-deep-black flex items-center justify-center">
+                      <svg
+                        className="w-12 h-12 md:w-16 md:h-16 text-deep-black"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={4}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-punchy-orange rounded-full border-6 border-deep-black flex items-center justify-center shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] animate-bounce">
+                <Search className="w-16 h-16 text-cream" strokeWidth={3} />
+              </div>
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-lime-green rounded-full border-4 border-deep-black"></div>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div className="absolute bottom-12 right-12 px-8 py-4 bg-white rounded-2xl border-4 border-deep-black shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] hidden lg:block">
+        <p className="text-lg font-black">
+          <span className="text-lime-green"></span> Blockchain Verified
+        </p>
       </div>
     </section>
   );

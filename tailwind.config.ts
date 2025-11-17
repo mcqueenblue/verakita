@@ -57,16 +57,22 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
 
-        // Verakita Brand Colors
+        // Verakita Neo-Brutalist Brand Colors
+        cream: "#FFFDF5", // Primary cream background
+        deepBlack: "#111111", // Deep black background
+        neonBlue: "#3B82F6", // Brand accent blue
+        punchyOrange: "#F97316", // Action orange
+        limeGreen: "#84CC16", // Highlight green
+
         brandBlue: {
-          DEFAULT: "#2563eb", // blue-600
-          dark: "#1d4ed8", // blue-700
-          light: "#3b82f6", // blue-500
+          DEFAULT: "#3B82F6", // neon blue
+          dark: "#2563eb",
+          light: "#60A5FA",
         },
         brandOrange: {
-          DEFAULT: "#f97316", // orange-500
-          dark: "#ea580c", // orange-600
-          light: "#fb923c", // orange-400
+          DEFAULT: "#f97316", // punchy orange
+          dark: "#ea580c",
+          light: "#fb923c",
         },
       },
 

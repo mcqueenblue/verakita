@@ -3,13 +3,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Verakita Neo-Brutalist Brand Colors */
+/* Verakita Morpho-Style Dark Theme */
 @theme {
-  --color-cream: #fffdf5;
-  --color-deep-black: #111111;
-  --color-neon-blue: #3b82f6;
-  --color-punchy-orange: #f97316;
-  --color-lime-green: #84cc16;
+  --color-dark-bg: #0b0c15;
+  --color-dark-card: #13141f;
+  --color-purple: #8b5cf6;
+  --color-blue: #3b82f6;
+  --color-glow-purple: rgba(139, 92, 246, 0.3);
+  --color-glow-blue: rgba(59, 130, 246, 0.3);
 }
 
 /* CSS Variables for Shadcn UI theme */
@@ -78,8 +79,7 @@
   }
 
   body {
-    @apply bg-cream text-deep-black font-sans antialiased;
-    /* Remove default scroll behavior - Lenis will handle it */
+    @apply bg-dark-bg text-gray-100 font-sans antialiased;
     overflow-x: hidden;
   }
 

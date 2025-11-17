@@ -1,21 +1,21 @@
 import Hero from "./sections/Hero";
-import ValueProp from "./sections/ValueProp";
-import Features from "./sections/Features";
+import Stats from "./sections/Stats";
 import HowItWorks from "./sections/HowItWorks";
-import CTA from "./sections/CTA";
+import Features from "./sections/Features";
+import Footer from "./sections/Footer";
 
 /**
  * Landing Page (verakita.com)
- * Neo-Brutalist design with bold typography and chunky elements
+ * Dark modern design inspired by Morpho.org
  */
 export default function LandingPage() {
   return (
     <>
       <Hero />
-      <ValueProp />
+      <Stats />
       <HowItWorks />
       <Features />
-      <CTA />
+      <Footer />
     </>
   );
 }

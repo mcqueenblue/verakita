@@ -83,12 +83,10 @@
     overflow-x: hidden;
   }
 
-  /* Custom cursor styles */
-  .cursor-none * {
-    cursor: none !important;
+  .cursor-none {
+    cursor: none;
   }
 
-  /* Smooth scrolling will be handled by Lenis on landing pages */
   html.lenis {
     height: auto;
   }

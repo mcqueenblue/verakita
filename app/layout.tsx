@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LenisProvider } from "@/components/providers/LenisProvider";
-import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
-  title: "Verakita - Trust Through Transparency",
+  title: "Verakita",
   description: "Authentic reviews and ratings platform",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -15,8 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="cursor-none">
-        <CustomCursor />
+      <body>
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

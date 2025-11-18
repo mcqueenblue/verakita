@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
@@ -30,12 +31,7 @@ export default function Hero() {
       <nav className="absolute top-0 left-0 right-0 z-50 border-b border-white/5 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-white">
-              verakita
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-purple to-blue">
-                .
-              </span>
-            </Link>
+            <Logo />
             <div className="hidden md:flex items-center gap-8">
               <a
                 href="#protocol"

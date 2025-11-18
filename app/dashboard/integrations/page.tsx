@@ -2,16 +2,27 @@
 
 /**
  * Integrations Page
- * Connect third-party services and platforms
+ * Manage connected apps and available integrations
  */
 export default function IntegrationsPage() {
-  const integrations = [
+  const connectedApps = [
     {
       name: "Shopify",
       description: "Sync reviews with your Shopify store",
       icon: "🛍️",
       connected: true,
+      lastSync: "2 hours ago",
     },
+    {
+      name: "Google Reviews",
+      description: "Import Google Business reviews",
+      icon: "🔍",
+      connected: true,
+      lastSync: "1 day ago",
+    },
+  ];
+
+  const availableApps = [
     {
       name: "WooCommerce",
       description: "Integrate with WooCommerce products",
@@ -19,37 +30,49 @@ export default function IntegrationsPage() {
       connected: false,
     },
     {
-      name: "Google Reviews",
-      description: "Import Google Business reviews",
-      icon: "🔍",
-      connected: true,
-    },
-    {
       name: "Trustpilot",
       description: "Connect your Trustpilot account",
       icon: "⭐",
       connected: false,
     },
+    {
+      name: "Amazon",
+      description: "Sync Amazon product reviews",
+      icon: "�",
+      connected: false,
+    },
+    {
+      name: "Facebook",
+      description: "Import Facebook page reviews",
+      icon: "👥",
+      connected: false,
+    },
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold text-zinc-800 mb-2">Integrations</h2>
-        <p className="text-zinc-600">
-          Connect Verakita with your favorite platforms and tools.
+        <h2 className="text-2xl font-bold text-white mb-2">Integrations</h2>
+        <p className="text-gray-400">
+          Connect and manage your integrated apps to sync reviews automatically.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {integrations.map((integration, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-xl border border-zinc-200 p-6 hover:shadow-lg transition-shadow relative"
-          >
-            {integration.connected && (
+      {/* Connected Apps */}
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-white">
+            Connected Apps ({connectedApps.length})
+          </h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {connectedApps.map((app, i) => (
+            <div
+              key={i}
+              className="bg-dark-card rounded-xl border border-green-500/30 p-6 hover:border-green-500/50 transition-all relative"
+            >
               <div className="absolute top-4 right-4">
-                <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
+                <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 text-xs font-medium rounded-full border border-green-500/30">
                   <svg
                     className="w-3 h-3"
                     fill="currentColor"
@@ -61,30 +84,57 @@ export default function IntegrationsPage() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Connected
+                  Active
                 </span>
               </div>
-            )}
 
-            <div className="text-4xl mb-4">{integration.icon}</div>
-            <h3 className="text-lg font-semibold text-zinc-800 mb-2">
-              {integration.name}
-            </h3>
-            <p className="text-sm text-zinc-600 mb-4">
-              {integration.description}
-            </p>
+              <div className="text-4xl mb-4">{app.icon}</div>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                {app.name}
+              </h3>
+              <p className="text-sm text-gray-400 mb-3">{app.description}</p>
+              <p className="text-xs text-gray-500 mb-4">
+                Last synced: {app.lastSync}
+              </p>
 
-            <button
-              className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-opacity ${
-                integration.connected
-                  ? "bg-zinc-100 text-zinc-700 hover:opacity-80"
-                  : "bg-[#2563eb] text-white hover:opacity-90"
-              }`}
+              <div className="flex gap-2">
+                <button className="flex-1 px-4 py-2 bg-white/10 text-gray-300 hover:bg-white/20 rounded-lg text-sm font-medium transition-all">
+                  Configure
+                </button>
+                <button className="px-4 py-2 border border-red-500/30 text-red-400 hover:bg-red-500/10 rounded-lg text-sm font-medium transition-all">
+                  Disconnect
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Available Apps */}
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-white">
+            Available Integrations
+          </h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {availableApps.map((app, i) => (
+            <div
+              key={i}
+              className="bg-dark-card rounded-xl border border-white/10 p-6 hover:border-purple/30 transition-all"
             >
-              {integration.connected ? "Manage" : "Connect"}
-            </button>
-          </div>
-        ))}
+              <div className="text-4xl mb-4">{app.icon}</div>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                {app.name}
+              </h3>
+              <p className="text-sm text-gray-400 mb-4">{app.description}</p>
+
+              <button className="w-full px-4 py-2 bg-linear-to-r from-purple to-blue text-white hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] rounded-lg text-sm font-medium transition-all">
+                Connect
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -94,17 +94,70 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* Planet Orb */}
           <div ref={orbRef} className="relative hidden lg:block">
             <div className="relative w-full aspect-square max-w-[500px] mx-auto">
+              {/* Outer Glow */}
               <div className="absolute inset-0 rounded-full bg-linear-to-br from-purple to-blue opacity-20 blur-3xl animate-pulse" />
-              <div className="absolute inset-8 rounded-full bg-linear-to-br from-purple to-blue opacity-30 blur-2xl" />
-              <div className="absolute inset-16 rounded-full border border-white/20 backdrop-blur-md bg-white/5">
-                <div className="absolute inset-0 rounded-full bg-linear-to-br from-purple/40 to-blue/40" />
-                <div className="absolute inset-8 rounded-full border border-white/10" />
-                <div className="absolute inset-16 rounded-full border border-white/5" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-full bg-linear-to-br from-purple to-blue shadow-[0_0_80px_rgba(139,92,246,0.8)]" />
+
+              {/* Planet Sphere with 3D effect */}
+              <div
+                className="absolute inset-12 rounded-full overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(139,92,246,0.4)]"
+                style={{
+                  background:
+                    "radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.8), rgba(59, 130, 246, 0.6) 50%, rgba(30, 27, 75, 0.9))",
+                  boxShadow:
+                    "inset -20px -20px 50px rgba(0, 0, 0, 0.5), inset 20px 20px 50px rgba(139, 92, 246, 0.2)",
+                }}
+              >
+                {/* Animated gradient overlay for rotation effect */}
+                <div
+                  className="absolute inset-0 rounded-full opacity-40"
+                  style={{
+                    background:
+                      "linear-gradient(120deg, transparent 30%, rgba(139, 92, 246, 0.4) 50%, transparent 70%)",
+                    animation: "rotate 8s linear infinite",
+                  }}
+                />
+
+                {/* Surface details - rings/stripes */}
+                <div className="absolute inset-0">
+                  <div className="absolute top-1/4 left-0 right-0 h-0.5 bg-white/10 blur-sm" />
+                  <div className="absolute top-1/2 left-0 right-0 h-px bg-white/20" />
+                  <div className="absolute bottom-1/3 left-0 right-0 h-0.5 bg-white/10 blur-sm" />
                 </div>
+
+                {/* Light spots (stars on planet) */}
+                <div className="absolute top-[20%] left-[30%] w-2 h-2 rounded-full bg-white/60 blur-[1px]" />
+                <div className="absolute top-[60%] right-[25%] w-1.5 h-1.5 rounded-full bg-white/40 blur-[1px]" />
+                <div className="absolute bottom-[30%] left-[40%] w-1 h-1 rounded-full bg-white/50 blur-[1px]" />
+              </div>
+
+              {/* Orbital Ring */}
+              <div
+                className="absolute inset-0 flex items-center justify-center"
+                style={{ animation: "rotateRing 20s linear infinite" }}
+              >
+                <div
+                  className="w-[120%] h-[30%] border-2 border-purple/30 rounded-full"
+                  style={{
+                    transform: "rotateX(75deg)",
+                    boxShadow: "0 0 20px rgba(139, 92, 246, 0.3)",
+                  }}
+                />
+              </div>
+
+              {/* Floating particles around planet */}
+              <div className="absolute inset-0">
+                <div className="absolute top-[10%] right-[20%] w-1 h-1 rounded-full bg-purple/60 animate-ping" />
+                <div
+                  className="absolute bottom-[15%] left-[15%] w-1 h-1 rounded-full bg-blue/60 animate-ping"
+                  style={{ animationDelay: "1s" }}
+                />
+                <div
+                  className="absolute top-[50%] left-[5%] w-1 h-1 rounded-full bg-white/40 animate-ping"
+                  style={{ animationDelay: "2s" }}
+                />
               </div>
             </div>
           </div>

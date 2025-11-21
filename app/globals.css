@@ -309,3 +309,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Planet Animations */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateRing {
+  from {
+    transform: rotateZ(0deg) rotateX(75deg);
+  }
+  to {
+    transform: rotateZ(360deg) rotateX(75deg);
+  }
+}

@@ -2,7 +2,7 @@
 
 export default function Features() {
   return (
-    <section className="py-32 bg-dark-bg">
+    <section id="features" className="py-32 bg-dark-bg">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-5xl font-bold text-center mb-16 text-white">
           Core Infrastructure

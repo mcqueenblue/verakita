@@ -19,7 +19,7 @@ export default function HowItWorks() {
     },
   ];
   return (
-    <section id="protocol" className="relative py-32 bg-dark-bg">
+    <section id="how-it-works" className="relative py-32 bg-dark-bg">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <h2 className="text-5xl md:text-6xl font-bold text-center mb-16">
           <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">

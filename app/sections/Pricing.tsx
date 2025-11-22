@@ -78,14 +78,14 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 items-start">
+        <div className="grid md:grid-cols-3 gap-8 items-stretch">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-dark-card border rounded-2xl p-8 transition-all hover:scale-105 ${
+              className={`relative bg-dark-card border rounded-2xl p-8 transition-all flex flex-col ${
                 plan.highlighted
-                  ? "border-purple shadow-[0_0_50px_rgba(139,92,246,0.3)] md:scale-105"
-                  : "border-white/10 hover:border-purple/30"
+                  ? "border-purple shadow-[0_0_50px_rgba(139,92,246,0.3)]"
+                  : "border-white/10 hover:border-purple/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.2)]"
               }`}
             >
               {plan.highlighted && (
@@ -111,7 +111,7 @@ export default function Pricing() {
               </div>
 
               {/* Features List */}
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 grow">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-purple/20 flex items-center justify-center shrink-0 mt-0.5">

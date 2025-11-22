@@ -7,10 +7,10 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 /**
- * Dashboard Layout with Sidebar - Morpho Dark Theme
- * Used for app.verakita.com dashboard pages
+ * Admin Dashboard Layout
+ * Separate from user dashboard - for team admin/management
  */
-export default function DashboardLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -34,9 +34,10 @@ export default function DashboardLayout({
                 sidebarOpen ? "opacity-100" : "opacity-0"
               }`}
             >
-              <div>
-                <Logo compact={!sidebarOpen} />
-              </div>
+              <Logo compact={!sidebarOpen} />
+              {sidebarOpen && (
+                <span className="text-xs text-purple font-semibold">ADMIN</span>
+              )}
             </div>
 
             <button
@@ -65,38 +66,31 @@ export default function DashboardLayout({
           {/* Navigation */}
           <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
             <NavItem
-              href="/dashboard"
+              href="/admin"
               icon={<DashboardIcon />}
               label="Overview"
-              active={pathname === "/dashboard"}
+              active={pathname === "/admin"}
               collapsed={!sidebarOpen}
             />
             <NavItem
-              href="/dashboard/reviews"
-              icon={<ReviewsIcon />}
-              label="Reviews"
-              active={pathname?.startsWith("/dashboard/reviews")}
+              href="/admin/api-keys"
+              icon={<KeyIcon />}
+              label="API Keys"
+              active={pathname?.startsWith("/admin/api-keys")}
               collapsed={!sidebarOpen}
             />
             <NavItem
-              href="/dashboard/analytics"
-              icon={<AnalyticsIcon />}
-              label="Analytics"
-              active={pathname?.startsWith("/dashboard/analytics")}
+              href="/admin/logs"
+              icon={<LogsIcon />}
+              label="Logs"
+              active={pathname?.startsWith("/admin/logs")}
               collapsed={!sidebarOpen}
             />
             <NavItem
-              href="/dashboard/integrations"
-              icon={<IntegrationsIcon />}
-              label="Integrations"
-              active={pathname?.startsWith("/dashboard/integrations")}
-              collapsed={!sidebarOpen}
-            />
-            <NavItem
-              href="/dashboard/api"
-              icon={<ApiIcon />}
-              label="API"
-              active={pathname?.startsWith("/dashboard/api")}
+              href="/admin/settings"
+              icon={<SettingsIcon />}
+              label="Settings"
+              active={pathname?.startsWith("/admin/settings")}
               collapsed={!sidebarOpen}
             />
 
@@ -104,27 +98,26 @@ export default function DashboardLayout({
             <div className="h-px bg-white/10 my-4" />
 
             <NavItem
-              href="/dashboard/settings"
-              icon={<SettingsIcon />}
-              label="Settings"
-              active={pathname?.startsWith("/dashboard/settings")}
+              href="/dashboard"
+              icon={<UserDashboardIcon />}
+              label="User Dashboard"
               collapsed={!sidebarOpen}
             />
           </nav>
 
-          {/* User Section */}
+          {/* Admin Info */}
           <div className="p-4 border-t border-white/10">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-linear-to-r from-purple to-blue rounded-full flex items-center justify-center text-white text-sm font-semibold">
-                JD
+                A
               </div>
               {sidebarOpen && (
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-white truncate">
-                    John Doe
+                    Admin
                   </p>
                   <p className="text-xs text-gray-400 truncate">
-                    john@example.com
+                    System Administrator
                   </p>
                 </div>
               )}
@@ -142,9 +135,12 @@ export default function DashboardLayout({
         {/* Top Bar */}
         <header className="h-16 bg-dark-card border-b border-white/10 sticky top-0 z-30 backdrop-blur-md">
           <div className="h-full px-6 flex items-center justify-between">
-            <h1 className="text-xl font-semibold text-white">
-              {getPageTitle(pathname)}
-            </h1>
+            <div>
+              <h1 className="text-xl font-semibold text-white">
+                {getPageTitle(pathname)}
+              </h1>
+              <p className="text-xs text-purple">Admin Panel</p>
+            </div>
 
             <div className="flex items-center gap-4">
               {/* Notifications */}
@@ -162,7 +158,7 @@ export default function DashboardLayout({
                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                   />
                 </svg>
-                <span className="absolute top-1 right-1 w-2 h-2 bg-purple rounded-full" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
               </button>
             </div>
           </div>
@@ -175,9 +171,6 @@ export default function DashboardLayout({
   );
 }
 
-/**
- * Navigation Item Component
- */
 function NavItem({
   href,
   icon,
@@ -207,21 +200,16 @@ function NavItem({
   );
 }
 
-/**
- * Helper function to get page title from pathname
- */
 function getPageTitle(pathname: string | null): string {
   if (!pathname) return "Overview";
-  if (pathname === "/dashboard") return "Overview";
-  if (pathname.startsWith("/dashboard/reviews")) return "Reviews";
-  if (pathname.startsWith("/dashboard/analytics")) return "Analytics";
-  if (pathname.startsWith("/dashboard/integrations")) return "Integrations";
-  if (pathname.startsWith("/dashboard/api")) return "API";
-  if (pathname.startsWith("/dashboard/settings")) return "Settings";
-  return "Dashboard";
+  if (pathname === "/admin") return "Admin Overview";
+  if (pathname.startsWith("/admin/api-keys")) return "API Key Management";
+  if (pathname.startsWith("/admin/logs")) return "System Logs";
+  if (pathname.startsWith("/admin/settings")) return "System Settings";
+  return "Admin Panel";
 }
 
-// Icon components
+// Icons
 function DashboardIcon() {
   return (
     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -235,53 +223,27 @@ function DashboardIcon() {
   );
 }
 
-function ReviewsIcon() {
+function KeyIcon() {
   return (
     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
-        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+        d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
       />
     </svg>
   );
 }
 
-function IntegrationsIcon() {
+function LogsIcon() {
   return (
     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
-        d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"
-      />
-    </svg>
-  );
-}
-
-function AnalyticsIcon() {
-  return (
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-      />
-    </svg>
-  );
-}
-
-function ApiIcon() {
-  return (
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
       />
     </svg>
   );
@@ -301,6 +263,19 @@ function SettingsIcon() {
         strokeLinejoin="round"
         strokeWidth={2}
         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+      />
+    </svg>
+  );
+}
+
+function UserDashboardIcon() {
+  return (
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
       />
     </svg>
   );

@@ -32,26 +32,6 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <Logo />
-            <div className="hidden md:flex items-center gap-8">
-              <a
-                href="#protocol"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Protocol
-              </a>
-              <a
-                href="#developers"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Developers
-              </a>
-              <a
-                href="#community"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Community
-              </a>
-            </div>
             <Link
               href="/dashboard"
               className="group relative px-6 py-2.5 bg-linear-to-r from-purple to-blue rounded-lg font-semibold overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]"
@@ -82,15 +62,19 @@ export default function Hero() {
               Verifiable, transparent, and unbribable.
             </p>
             <div ref={ctaRef} className="flex flex-wrap gap-4">
+              <Link href="/dashboard">
               <button className="group relative px-8 py-4 bg-linear-to-r from-purple to-blue rounded-lg font-semibold overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]">
                 <span className="relative z-10 flex items-center gap-2 text-white">
                   Start Verifying
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
+              </Link>
+              <Link href="#">
               <button className="px-8 py-4 text-white rounded-lg font-semibold border border-white/10 hover:border-purple/50 hover:bg-white/5 transition-all backdrop-blur-sm">
                 Read Docs
               </button>
+              </Link>
             </div>
           </div>
 

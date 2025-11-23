@@ -67,17 +67,21 @@ export default function Hero() {
             </p>
             <div ref={ctaRef} className="flex flex-wrap gap-4">
               <Link href="/dashboard">
-              <button className="group relative px-8 py-4 bg-linear-to-r from-purple to-blue rounded-lg font-semibold overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]">
-                <span className="relative z-10 flex items-center gap-2 text-white">
-                  Start Verifying
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </button>
+                <button className="group relative px-8 py-4 bg-linear-to-r from-purple to-blue rounded-lg font-semibold overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]">
+                  <span className="relative z-10 flex items-center gap-2 text-white">
+                    Start Verifying
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </button>
               </Link>
-              <Link href="https://verakita.gitbook.io/verakita-docs/">
-              <button className="px-8 py-4 text-white rounded-lg font-semibold border border-white/10 hover:border-purple/50 hover:bg-white/5 transition-all backdrop-blur-sm">
-                Read Docs
-              </button>
+              <Link
+                href="https://verakita.gitbook.io/verakita-docs/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="px-8 py-4 text-white rounded-lg font-semibold border border-white/10 hover:border-purple/50 hover:bg-white/5 transition-all backdrop-blur-sm">
+                  Read Docs
+                </button>
               </Link>
             </div>
           </div>

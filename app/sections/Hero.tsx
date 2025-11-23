@@ -74,7 +74,7 @@ export default function Hero() {
                 </span>
               </button>
               </Link>
-              <Link href="#">
+              <Link href="https://verakita.gitbook.io/verakita-docs/">
               <button className="px-8 py-4 text-white rounded-lg font-semibold border border-white/10 hover:border-purple/50 hover:bg-white/5 transition-all backdrop-blur-sm">
                 Read Docs
               </button>

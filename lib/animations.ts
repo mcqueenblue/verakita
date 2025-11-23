@@ -77,14 +77,14 @@ export const scaleIn = (
  * @param scrollTriggerOptions - ScrollTrigger options
  */
 export const scrollAnimation = (
-  element: gsap.TweenTarget,
+  element: gsap.DOMTarget,
   animation: gsap.TweenVars,
   scrollTriggerOptions?: ScrollTrigger.Vars
 ) => {
   return gsap.from(element, {
     ...animation,
     scrollTrigger: {
-      trigger: element,
+      trigger: element as gsap.DOMTarget,
       start: "top 80%",
       end: "bottom 20%",
       toggleActions: "play none none reverse",

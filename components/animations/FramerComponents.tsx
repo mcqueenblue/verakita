@@ -2,6 +2,7 @@
 
 import { motion, HTMLMotionProps } from "framer-motion";
 import { ReactNode } from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -302,6 +303,32 @@ export function CountUp({
   duration?: number;
   className?: string;
 }) {
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      
+      setCount(Math.floor(progress * value));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [value, duration]);
+
   return (
     <motion.span
       initial={{ opacity: 0 }}
@@ -309,14 +336,7 @@ export function CountUp({
       transition={{ duration: 0.5 }}
       className={className}
     >
-      <motion.span
-        initial={{ value: 0 }}
-        animate={{ value }}
-        transition={{ duration, ease: "easeOut" }}
-      >
-        {/* This would need a custom implementation with useMotionValue */}
-        {value}
-      </motion.span>
+      {count}
     </motion.span>
   );
 }

@@ -7,10 +7,10 @@ import { fetchFromWalrus, getWalrusUrl } from '@/lib/walrus/storage';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { blobId: string } }
+  { params }: { params: Promise<{ blobId: string }> }
 ) {
   try {
-    const { blobId } = params;
+    const { blobId } = await params;
 
     if (!blobId) {
       return NextResponse.json(

@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   // Dark mode configuration (optional)
-  darkMode: ["class"],
+  darkMode: "class",
 
   // Content paths for Tailwind to scan
   content: [

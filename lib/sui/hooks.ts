@@ -77,12 +77,12 @@ export function useWalletBalance() {
  * Hook for signing and executing transactions
  */
 export function useTransaction() {
-  const { currentWallet } = useWalletKit();
+  const { currentWallet, currentAccount } = useWalletKit();
   const [loading, setLoading] = useState(false);
 
   const signAndExecute = useCallback(
     async (transaction: any) => {
-      if (!currentWallet) {
+      if (!currentWallet || !currentAccount) {
         throw new Error("Wallet not connected");
       }
 
@@ -93,6 +93,8 @@ export function useTransaction() {
           "sui:signAndExecuteTransactionBlock"
         ]?.signAndExecuteTransactionBlock({
           transactionBlock: transaction,
+          account: currentAccount,
+          chain: `sui:${currentAccount.chains[0].split(':')[1] || 'testnet'}`,
           options: {
             showEffects: true,
             showObjectChanges: true,
@@ -106,7 +108,7 @@ export function useTransaction() {
         setLoading(false);
       }
     },
-    [currentWallet]
+    [currentWallet, currentAccount]
   );
 
   return {

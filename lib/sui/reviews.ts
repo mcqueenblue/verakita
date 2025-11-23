@@ -3,7 +3,8 @@
  * Functions to interact with Verakita review contracts on Sui
  */
 
-import { TransactionBlock } from '@mysten/sui.js/transactions';
+import { Transaction } from '@mysten/sui/transactions';
+import { bcs } from '@mysten/sui/bcs';
 import { CONTRACT_ADDRESSES } from '../sui/config';
 import { suiClient } from '../sui/client';
 
@@ -25,15 +26,15 @@ export async function createReview(
   rating: number,
   contentBlobId: string
 ) {
-  const tx = new TransactionBlock();
+  const tx = new Transaction();
 
   tx.moveCall({
     target: `${CONTRACT_ADDRESSES.reviewPackageId}::review::create_review`,
     arguments: [
-      tx.pure(CONTRACT_ADDRESSES.reviewRegistryId),
-      tx.pure(target),
-      tx.pure(rating),
-      tx.pure(contentBlobId),
+      tx.pure(bcs.Address.serialize(CONTRACT_ADDRESSES.reviewRegistryId).toBytes()),
+      tx.pure(bcs.Address.serialize(target).toBytes()),
+      tx.pure(bcs.u8().serialize(rating).toBytes()),
+      tx.pure(bcs.string().serialize(contentBlobId).toBytes()),
     ],
   });
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { TransactionBlock } from '@mysten/sui.js/transactions';
+import { Transaction } from '@mysten/sui/transactions';
 import { suiClient } from '@/lib/sui/client';
 
 /**

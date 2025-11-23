@@ -225,7 +225,7 @@
 /* Print styles */
 @media print {
   body {
-    @apply bg-white text-black;
+    @apply bg-white text-gray-900;
   }
 }
 

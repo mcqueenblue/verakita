@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { WalletButton } from "@/components/WalletButton";
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
@@ -32,12 +33,15 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <Logo />
-            <Link
-              href="/dashboard"
-              className="group relative px-6 py-2.5 bg-linear-to-r from-purple to-blue rounded-lg font-semibold overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]"
-            >
-              <span className="relative z-10 text-white">Launch App</span>
-            </Link>
+            <div className="flex items-center gap-4">
+              <WalletButton />
+              <Link
+                href="/dashboard"
+                className="group relative px-6 py-2.5 bg-linear-to-r from-purple to-blue rounded-lg font-semibold overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]"
+              >
+                <span className="relative z-10 text-white">Launch App</span>
+              </Link>
+            </div>
           </div>
         </div>
       </nav>

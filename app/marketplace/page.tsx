@@ -238,14 +238,14 @@ export default function MarketplacePage() {
           className="max-w-2xl w-full"
         >
           <Card className="bg-[#13131a] border-white/10 p-8">
-            <h2 className="text-2xl font-bold mb-6">Confirm Purchase</h2>
+            <h2 className="text-2xl font-bold mb-6 text-white">Confirm Purchase</h2>
             
             <div className="flex gap-6 mb-8">
               <div className="w-32 h-32 rounded-lg bg-linear-to-br from-purple-500/10 to-blue-500/10 flex items-center justify-center text-6xl">
                 {selectedProduct.image}
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold mb-2">{selectedProduct.name}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-white">{selectedProduct.name}</h3>
                 <p className="text-gray-400 text-sm mb-4">{selectedProduct.description}</p>
                 <div className="text-2xl font-bold text-purple-400">
                   ${selectedProduct.price}
@@ -256,14 +256,14 @@ export default function MarketplacePage() {
             <div className="bg-[#0a0a0f] rounded-lg p-4 mb-6">
               <div className="flex justify-between mb-2">
                 <span className="text-gray-400">Subtotal</span>
-                <span>${selectedProduct.price}</span>
+                <span className="text-white">${selectedProduct.price}</span>
               </div>
               <div className="flex justify-between mb-2">
                 <span className="text-gray-400">Gas Fee (Sui)</span>
-                <span className="text-sm">~0.01 SUI</span>
+                <span className="text-sm text-white">~0.01 SUI</span>
               </div>
               <div className="border-t border-white/10 mt-3 pt-3 flex justify-between font-bold text-lg">
-                <span>Total</span>
+                <span className='text-white'>Total</span>
                 <span className="text-purple-400">${selectedProduct.price}</span>
               </div>
             </div>
@@ -347,7 +347,7 @@ export default function MarketplacePage() {
                     placeholder="Sum up your experience"
                     value={reviewData.title}
                     onChange={(e) => setReviewData({ ...reviewData, title: e.target.value })}
-                    className="mt-2 text-white"
+                    className="mt-2 w-full px-3 py-2 bg-[#0a0a0f] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
                   />
                 </div>
 
@@ -448,7 +448,7 @@ export default function MarketplacePage() {
                   className="flex-1"
                   onClick={resetSimulation}
                 >
-                  Try Again
+                  Close
                 </Button>
                 <Link href="/dashboard/reviews" className="flex-1">
                   <Button className="w-full bg-purple-500 hover:bg-purple-600">

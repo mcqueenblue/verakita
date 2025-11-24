@@ -131,7 +131,7 @@ export default function TrySimulation() {
               </div>
               <div className="p-6">
                 <div className="flex items-start justify-between mb-2">
-                  <h4 className="font-semibold text-lg">Wireless Headphones Pro</h4>
+                  <h4 className="font-semibold text-lg text-white">Wireless Headphones Pro</h4>
                   <div className="text-xl font-bold text-purple-400">$299</div>
                 </div>
                 <div className="flex items-center gap-2 mb-4">
